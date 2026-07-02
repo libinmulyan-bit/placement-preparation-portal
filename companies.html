@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Company Tracker</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<nav>
+    <h2>Placement Portal</h2>
+
+    <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="quiz.html">Quiz</a></li>
+        <li><a href="interview.html">Interview Questions</a></li>
+        <li><a href="companies.html">Companies</a></li>
+    </ul>
+</nav>
+<body>
+
+<h1 style="text-align:center;margin-top:30px;">
+Company Tracker
+</h1>
+
+<div class="card" style="margin:20px auto;">
+
+<h3>Track Your Applications</h3>
+
+<input
+type="text"
+id="companyName"
+placeholder="Enter company name">
+
+<button onclick="saveCompany()">
+Add Company
+</button>
+
+<ul id="companyList"></ul>
+
+</div>
+<div style="text-align:center; margin:30px;">
+    <button onclick="window.location.href='index.html'">
+        Back to Home
+    </button>
+</div>
+<script>
+
+function saveCompany(){
+
+let company =
+document.getElementById("companyName").value.trim();
+
+if(company === ""){
+    alert("Please enter a company name");
+    return;
+}
+
+let companies =
+JSON.parse(localStorage.getItem("companies")) || [];
+
+companies.push(company);
+
+localStorage.setItem(
+"companies",
+JSON.stringify(companies)
+);
+
+document.getElementById("companyName").value = "";
+
+displayCompanies();
+
+}
+
+function displayCompanies(){
+
+let companies =
+JSON.parse(localStorage.getItem("companies")) || [];
+
+let list =
+document.getElementById("companyList");
+
+list.innerHTML="";
+
+companies.forEach(function(company){
+
+list.innerHTML +=
+`<li>${company}</li>`;
+
+});
+
+}
+
+displayCompanies();
+
+</script>
+<footer>
+    <p>© 2026 Placement Preparation Portal</p>
+</footer>
+</body>
+</html>

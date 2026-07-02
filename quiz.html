@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Aptitude Quiz</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<nav>
+    <h2>Placement Portal</h2>
+
+    <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="quiz.html">Quiz</a></li>
+        <li><a href="interview.html">Interview Questions</a></li>
+        <li><a href="companies.html">Companies</a></li>
+    </ul>
+</nav>
+<body>
+
+<h1 style="text-align:center; margin-top:30px;">
+    Aptitude Quiz
+</h1>
+
+<div class="card" style="margin:30px auto; text-align:center; width:600px; padding:30px;">
+
+    <h3 id="question"></h3>
+
+    <button id="option1" onclick="checkAnswer(0)"></button><br><br>
+    <button id="option2" onclick="checkAnswer(1)"></button><br><br>
+    <button id="option3" onclick="checkAnswer(2)"></button><br><br>
+    <button id="option4" onclick="checkAnswer(3)"></button>
+
+    <h2 id="result"></h2>
+
+</div>
+
+<script>
+
+let questions = [
+
+{
+question:"What is 15 × 8 ?",
+options:["100","120","125","130"],
+answer:1
+},
+
+{
+question:"Square root of 225 ?",
+options:["10","12","15","18"],
+answer:2
+},
+
+{
+question:"25% of 800 = ?",
+options:["150","180","200","250"],
+answer:2
+},
+
+{
+question:"What comes next? 2, 4, 8, 16, ?",
+options:["24","30","32","36"],
+answer:2
+},
+
+{
+question:"What is 18² ?",
+options:["324","342","316","328"],
+answer:0
+},
+
+{
+question:"Average of 10,20,30,40,50 ?",
+options:["20","25","30","35"],
+answer:2
+},
+
+{
+question:"What is 7 × 9 ?",
+options:["56","63","72","81"],
+answer:1
+},
+
+{
+question:"If 3x = 27, x = ?",
+options:["6","7","8","9"],
+answer:3
+},
+
+{
+question:"What is 20% of 350 ?",
+options:["60","65","70","75"],
+answer:2
+},
+
+{
+question:"What is 144 ÷ 12 ?",
+options:["10","11","12","13"],
+answer:2
+},
+
+{
+question:"Cube of 4 ?",
+options:["16","32","48","64"],
+answer:3
+},
+
+{
+question:"If a train travels 60 km/hr for 3 hours, distance covered ?",
+options:["120","150","180","200"],
+answer:2
+},
+
+{
+question:"Find the next number: 1,4,9,16, ?",
+options:["20","25","30","36"],
+answer:1
+},
+
+{
+question:"A car travels 240 km in 4 hours. Speed ?",
+options:["50","55","60","65"],
+answer:2
+},
+
+{
+question:"What is 17 + 28 ?",
+options:["43","44","45","46"],
+answer:2
+},
+
+{
+question:"Simple interest on ₹1000 at 10% for 2 years ?",
+options:["100","150","200","250"],
+answer:2
+},
+
+{
+question:"What comes next? 3,6,12,24, ?",
+options:["36","42","48","54"],
+answer:2
+},
+
+{
+question:"If a pen costs ₹25, cost of 12 pens ?",
+options:["250","275","300","325"],
+answer:2
+},
+
+{
+question:"What is 19 × 5 ?",
+options:["90","95","100","105"],
+answer:1
+},
+
+{
+question:"What is 30% of 500 ?",
+options:["120","130","140","150"],
+answer:3
+}
+
+];
+
+let currentQuestion = 0;
+let score = 0;
+
+function loadQuestion() {
+
+document.getElementById("question").innerHTML =
+(currentQuestion + 1) + ". " + questions[currentQuestion].question;
+
+document.getElementById("option1").innerHTML =
+questions[currentQuestion].options[0];
+
+document.getElementById("option2").innerHTML =
+questions[currentQuestion].options[1];
+
+document.getElementById("option3").innerHTML =
+questions[currentQuestion].options[2];
+
+document.getElementById("option4").innerHTML =
+questions[currentQuestion].options[3];
+
+}
+
+function checkAnswer(selected) {
+
+if(selected === questions[currentQuestion].answer){
+score++;
+}
+
+currentQuestion++;
+
+if(currentQuestion < questions.length){
+loadQuestion();
+}
+else{
+
+document.querySelector(".card").innerHTML =
+`
+<h1>Quiz Completed 🎉</h1>
+<h2>Your Score: ${score} / ${questions.length}</h2>
+
+<button onclick="window.location.href='interview.html'">
+Next: Interview Questions →
+</button>
+`;
+}
+
+}
+
+loadQuestion();
+
+</script>
+<footer>
+    <p>© 2026 Placement Preparation Portal</p>
+</footer>
+</body>
+</html>
